@@ -6,8 +6,13 @@
       <button type="submit">Tambah</button>
     </form>
 
+    <label>
+      <input type="checkbox" v-model="showOnlyUnfinished" />
+      Tampilkan hanya yang belum selesai
+    </label>
+
     <ul>
-      <li v-for="(task, index) in tasks" :key="index">
+      <li v-for="(task, index) in filteredTasks" :key="index">
         <span :class="{ done: task.done }">{{ task.text }}</span>
         <input type="checkbox" v-model="task.done" />
         <button @click="removeTask(index)">Hapus</button>
@@ -24,20 +29,29 @@ export default {
       tasks: [
       { text: 'Belajar VueJS', done: false },
       { text: 'Makan Siang', done: false }
-    ]
+    ],
+    showOnlyUnfinished: false
     };
   },
   methods: {
     addTask() {
       if (this.newTask.trim()) {
-        this.tasks.push(this.newTask);
+        this.tasks.push({ text: this.newTask, done: false });
         this.newTask = '';
       }
     },
     removeTask(index) {
       this.tasks.splice(index, 1);
     }
+  },
+  computed: {
+  filteredTasks() {
+    if (this.showOnlyUnfinished) {
+      return this.tasks.filter(task => !task.done);
+    }
+    return this.tasks;
   }
+}
 };
 </script>
 <style scoped>
