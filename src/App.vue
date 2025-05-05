@@ -149,7 +149,6 @@ li:hover {
   background-color: #32363e;
 }
 
-/* ✅ Custom Circular Checkbox with Filled Dot */
 input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
