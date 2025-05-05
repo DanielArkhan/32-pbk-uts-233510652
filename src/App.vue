@@ -40,3 +40,9 @@ export default {
   }
 };
 </script>
+<style scoped>
+.done {
+  text-decoration: line-through;
+  color: gray;
+}
+</style>
