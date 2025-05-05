@@ -9,6 +9,7 @@
     <ul>
       <li v-for="(task, index) in tasks" :key="index">
         {{ task }}
+        <button @click="removeTask(index)">Hapus</button>
       </li>
     </ul>
   </main>
@@ -28,6 +29,9 @@ export default {
         this.tasks.push(this.newTask);
         this.newTask = '';
       }
+    },
+    removeTask(index) {
+      this.tasks.splice(index, 1);
     }
   }
 };
