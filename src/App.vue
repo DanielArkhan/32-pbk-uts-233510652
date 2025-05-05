@@ -8,7 +8,8 @@
 
     <ul>
       <li v-for="(task, index) in tasks" :key="index">
-        {{ task }}
+        <span :class="{ done: task.done }">{{ task.text }}</span>
+        <input type="checkbox" v-model="task.done" />
         <button @click="removeTask(index)">Hapus</button>
       </li>
     </ul>
@@ -20,7 +21,10 @@ export default {
   data() {
     return {
       newTask: '',
-      tasks: ['Belajar VueJS', 'Makan Siang']
+      tasks: [
+      { text: 'Belajar VueJS', done: false },
+      { text: 'Makan Siang', done: false }
+    ]
     };
   },
   methods: {
